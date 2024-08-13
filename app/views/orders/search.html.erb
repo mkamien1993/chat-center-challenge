@@ -1,0 +1,59 @@
+<%= form_with url: search_orders_path, method: :get, local: true do |form| %>
+  <div>
+    <%= form.label :product_id, "Product ID" %>
+    <%= form.number_field :product_id, value: params[:product_id] %>
+  </div>
+
+  <p></p>
+
+  <div>
+    <%= form.label :customer_name %>
+    <%= form.text_field :customer_name, value: params[:customer_name] %>
+  </div>
+
+  <p></p>
+
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, Order.statuses.keys.map { |status| [status.humanize, status] }, include_blank: true, selected: params[:status] %>
+  </div>
+
+  <p></p>
+
+  <div>
+    <%= form.label :created_at, "Creation Date" %>
+    <%= form.date_field :created_at, value: params[:created_at] %>
+  </div>
+
+  <p></p>
+
+  <%= form.submit "Search" %>
+<% end %>
+
+<h2>Search Results:</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Order ID</th>
+    <th>Product Name</th>
+    <th>Product ID</th>
+    <th>Customer Name</th>
+    <th>Status</th>
+    <th>Created</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.product.name %></td>
+      <td><%= order.product.id %></td>
+      <td><%= order.customer_name %></td>
+      <td><%= order.status.capitalize %></td>
+      <td><%= order.created_at.strftime('%d/%m/%Y') %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', orders_path %>

@@ -1,0 +1,7 @@
+Order Status Update
+
+The following orders have been successfully updated:
+
+<% @orders.each do |order| %>
+  - Order ID: <%= order.id %>, Status: <%= order.status %>
+<% end %>

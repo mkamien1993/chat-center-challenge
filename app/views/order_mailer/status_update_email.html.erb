@@ -1,0 +1,9 @@
+<h1>Order Status Update</h1>
+
+<p>The following orders have been successfully updated:</p>
+
+<ul>
+  <% @orders.each do |order| %>
+    <li>Order ID: <%= order.id %>, Status: <%= order.status %></li>
+  <% end %>
+</ul>

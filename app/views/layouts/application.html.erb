@@ -8,6 +8,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+  <% if flash[:alert] %>
+    <p id="flash-alert"><%= flash[:alert] %></p>
+  <% end %>
     <%= yield %>
   </body>
+  <nav>
+    <% if user_signed_in? %>
+      <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'Login', new_user_session_path %>
+    <% end %>
+  </nav>
+
 </html>
