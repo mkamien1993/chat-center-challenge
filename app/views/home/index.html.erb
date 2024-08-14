@@ -1,0 +1,10 @@
+<p>Welcome, <%= current_user.email %>!</p>
+
+<p>Your role: <%= current_user.role.capitalize %></p>
+
+<nav>
+  <ul>
+    <li><%= link_to 'Products', products_path %></li>
+    <li><%= link_to 'Orders', orders_path %></li>
+  </ul>
+</nav>

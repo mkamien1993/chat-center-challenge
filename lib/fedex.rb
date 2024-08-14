@@ -52,11 +52,13 @@ module Fedex
 
     # Fetches and returns a shipment with the latest updates available.
     #
-    # @param fedex_id [String] ID of the shipment to find
+    # @param id [String] ID of the shipment to find
     # @return [Shipment] a shipment with updated status
     # @raise [ShipmentNotFound] if the shipment can't be found
     #
-    def self.find(fedex_id)
+    def self.find(id)
+      @shipments ||= {}
+
       shipment = @shipments[id]
 
       raise ShipmentNotFound, "Shipment not found: #{id}" if shipment.blank?
